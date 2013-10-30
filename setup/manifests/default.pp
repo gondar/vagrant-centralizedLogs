@@ -9,7 +9,7 @@ package {'curl':
 }
 
 class {'elasticsearch':
-  version => '0.90.0',
+  version => '0.90.5',
   require => Exec['apt-get-update'],
 }
 
@@ -17,3 +17,5 @@ class { 'redis':
   version => '2.6.16',
 }
 
+class { 'kibana3':
+}

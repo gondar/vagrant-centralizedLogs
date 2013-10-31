@@ -19,3 +19,11 @@ class { 'redis':
 
 class { 'kibana3':
 }
+
+class { 'logstash':
+   provider => 'custom',
+   jarfile  => 'puppet:///modules/logstash/logstash-1.2.1-flatjar.jar',
+   installpath => '/var/lib/logstash/',
+   instances => [ 'shipper', 'indexer' ],
+   conffile => { 'shipper' => '/vagrant/indexer.conf', 'indexer' => '/vagrant/shipper.conf' }
+}

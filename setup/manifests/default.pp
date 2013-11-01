@@ -28,11 +28,12 @@ class { 'logstash':
    conffile => { 'shipper' => '/vagrant/indexer.conf', 'indexer' => '/vagrant/shipper.conf' }
 }
 
-class { '::ntp':
-  servers => [ '0.uk.pool.ntp.org', '1.uk.pool.ntp.org' ],
-}
-
 class { 'timezone': 
   region => 'Europe',
   locality => 'London',
 }
+
+class { '::ntp':
+  servers => [ '0.uk.pool.ntp.org', '1.uk.pool.ntp.org' ],
+}
+

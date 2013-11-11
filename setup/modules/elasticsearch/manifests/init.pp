@@ -1,4 +1,4 @@
-class elasticsearch ($version) {
+class elasticsearch ($version, $conffile = undef, $initfile = undef) {
 
 	file {'/tmp/elasticsearch.deb':
 		source => "puppet:///modules/elasticsearch/elasticsearch-${version}.deb",
@@ -15,5 +15,21 @@ class elasticsearch ($version) {
         source => '/tmp/elasticsearch.deb',
 		require => [Package['openjdk-7-jre-headless'],File['/tmp/elasticsearch.deb']],
 	}
+
+    	if $conffile {
+      		file { "/etc/elasticsearch/elasticsearch.yml":
+        	ensure  => file,
+        	mode    => '0644',
+        	source  => $conffile,
+        	}
+	}
+
+    	if $initfile {
+      		file { "/etc/init.d/elasticsearch":
+        	ensure  => file,
+        	mode    => '0755',
+        	source  => $initfile,
+        	}
+    	}	
 
 }

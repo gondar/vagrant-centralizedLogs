@@ -10,6 +10,8 @@ package {'curl':
 
 class {'elasticsearch':
   version => '0.90.5',
+  conffile => '/vagrant/elasticsearch.yml',
+  initfile => '/vagrant/elasticsearch',
   require => Exec['apt-get-update'],
 }
 
